@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   option.c                                           :+:      :+:    :+:   */
+/*   ft_lstsort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:09:32 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/08 18:32:45 by kemartin         ###   ########.fr       */
+/*   Created: 2018/09/14 13:08:22 by kemartin          #+#    #+#             */
+/*   Updated: 2018/11/09 15:36:31 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-int		is_opts(char c)
+void	ft_lstsort(t_list **list)
 {
-	return (c == 'l' || c == 'R' || c == 'a' || c == 'r' || c == 't');
-}
+	t_list	*tmp1;
+	t_list	*tmp2;
+	t_list	*tmp3;
+	void	*trie;
 
-void	options(char *str, t_struct *tab)
-{
-	int			i;
-	int			j;
-
-	i = 1;
-	j = ft_strlen(tab->opt);
-	while (str[i])
+	tmp1 = (*list);
+	while (tmp1)
 	{
-		if (is_opts(str[i]))
-			tab->opt[j++] = str[i];
-		i++;
+		tmp3 = tmp1;
+		trie = tmp1->content;
+		tmp2 = tmp1->next;
+		while (tmp2)
+		{
+			if (ft_strcmp(trie, tmp2->content) > 0)
+			{
+				tmp3 = tmp2;
+				trie = tmp3->content;
+			}
+			tmp2 = tmp2->next;
+		}
+		tmp3->content = tmp1->content;
+		tmp1->content = trie;
+		tmp1 = tmp1->next;
 	}
 }

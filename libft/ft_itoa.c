@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   option.c                                           :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:09:32 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/08 18:32:45 by kemartin         ###   ########.fr       */
+/*   Created: 2018/11/08 20:22:49 by kemartin          #+#    #+#             */
+/*   Updated: 2018/11/08 21:06:46 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-int		is_opts(char c)
+char	*ft_itoa(int n)
 {
-	return (c == 'l' || c == 'R' || c == 'a' || c == 'r' || c == 't');
-}
-
-void	options(char *str, t_struct *tab)
-{
+	char		*str;
 	int			i;
-	int			j;
+	long		nb;
 
-	i = 1;
-	j = ft_strlen(tab->opt);
-	while (str[i])
+	nb = (long)n;
+	if (!(str = ft_strnew(ft_nblen(n))))
+		return (NULL);
+	if (nb < 0)
+		nb *= -1;
+	i = 0;
+	while (nb != 0 || i == 0)
 	{
-		if (is_opts(str[i]))
-			tab->opt[j++] = str[i];
+		str[i] = (nb % 10) + '0';
+		nb /= 10;
 		i++;
 	}
+	if (n < 0)
+		str[i++] = '-';
+	str[i] = '\0';
+	return (ft_strrev(str));
 }

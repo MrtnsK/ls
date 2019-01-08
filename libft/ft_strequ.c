@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   option.c                                           :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:09:32 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/08 18:32:45 by kemartin         ###   ########.fr       */
+/*   Created: 2018/11/08 15:39:33 by kemartin          #+#    #+#             */
+/*   Updated: 2018/11/09 14:59:33 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-int		is_opts(char c)
+int		ft_strequ(char const *s1, char const *s2)
 {
-	return (c == 'l' || c == 'R' || c == 'a' || c == 'r' || c == 't');
-}
+	int	i;
 
-void	options(char *str, t_struct *tab)
-{
-	int			i;
-	int			j;
-
-	i = 1;
-	j = ft_strlen(tab->opt);
-	while (str[i])
-	{
-		if (is_opts(str[i]))
-			tab->opt[j++] = str[i];
+	i = 0;
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	while (s1[i] == s2[i] && s1[i] && s2[i])
 		i++;
-	}
+	if (s1[i] == '\0' && s2[i] == '\0')
+		return (1);
+	else
+		return (0);
 }

@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   option.c                                           :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:09:32 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/08 18:32:45 by kemartin         ###   ########.fr       */
+/*   Created: 2018/11/09 14:15:33 by kemartin          #+#    #+#             */
+/*   Updated: 2018/11/09 14:59:33 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-int		is_opts(char c)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	return (c == 'l' || c == 'R' || c == 'a' || c == 'r' || c == 't');
-}
+	t_list *nod;
 
-void	options(char *str, t_struct *tab)
-{
-	int			i;
-	int			j;
-
-	i = 1;
-	j = ft_strlen(tab->opt);
-	while (str[i])
-	{
-		if (is_opts(str[i]))
-			tab->opt[j++] = str[i];
-		i++;
-	}
+	if (!lst)
+		return (NULL);
+	if (!(nod = (t_list *)malloc(sizeof(f(lst)))))
+		return (NULL);
+	nod = f(lst);
+	nod->next = ft_lstmap(lst->next, f);
+	return (nod);
 }

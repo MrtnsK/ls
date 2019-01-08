@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   option.c                                           :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:09:32 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/08 18:32:45 by kemartin         ###   ########.fr       */
+/*   Created: 2018/11/05 18:10:08 by kemartin          #+#    #+#             */
+/*   Updated: 2018/12/11 19:42:28 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-int		is_opts(char c)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	return (c == 'l' || c == 'R' || c == 'a' || c == 'r' || c == 't');
-}
+	size_t		i;
+	size_t		d_len;
+	size_t		s_len;
 
-void	options(char *str, t_struct *tab)
-{
-	int			i;
-	int			j;
-
-	i = 1;
-	j = ft_strlen(tab->opt);
-	while (str[i])
-	{
-		if (is_opts(str[i]))
-			tab->opt[j++] = str[i];
+	i = 0;
+	d_len = ft_strlen((char *)dest);
+	s_len = ft_strlen(src);
+	if (size <= d_len)
+		return (s_len + size);
+	while (dest[i] && i < size - 1)
 		i++;
-	}
+	while (*src && i < size - 1)
+		dest[i++] = *src++;
+	dest[i] = '\0';
+	return (d_len + s_len);
 }

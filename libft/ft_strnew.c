@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   option.c                                           :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:09:32 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/08 18:32:45 by kemartin         ###   ########.fr       */
+/*   Created: 2018/11/08 12:54:16 by kemartin          #+#    #+#             */
+/*   Updated: 2018/11/08 13:47:15 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-int		is_opts(char c)
+char	*ft_strnew(size_t size)
 {
-	return (c == 'l' || c == 'R' || c == 'a' || c == 'r' || c == 't');
-}
+	char		*str;
 
-void	options(char *str, t_struct *tab)
-{
-	int			i;
-	int			j;
-
-	i = 1;
-	j = ft_strlen(tab->opt);
-	while (str[i])
-	{
-		if (is_opts(str[i]))
-			tab->opt[j++] = str[i];
-		i++;
-	}
+	if (!(str = (char *)malloc(sizeof(*str) * (size + 1))))
+		return (NULL);
+	ft_bzero(str, size);
+	str[size] = '\0';
+	return (str);
 }

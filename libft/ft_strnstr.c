@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   option.c                                           :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:09:32 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/08 18:32:45 by kemartin         ###   ########.fr       */
+/*   Created: 2018/11/05 19:04:05 by kemartin          #+#    #+#             */
+/*   Updated: 2018/11/08 21:49:18 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-int		is_opts(char c)
+char	*ft_strnstr(const char *str, const char *to_find, size_t l)
 {
-	return (c == 'l' || c == 'R' || c == 'a' || c == 'r' || c == 't');
-}
+	size_t i;
+	size_t j;
 
-void	options(char *str, t_struct *tab)
-{
-	int			i;
-	int			j;
-
-	i = 1;
-	j = ft_strlen(tab->opt);
-	while (str[i])
+	i = 0;
+	if (to_find[0] == '\0')
+		return ((char *)str);
+	while (str[i] && i < l)
 	{
-		if (is_opts(str[i]))
-			tab->opt[j++] = str[i];
+		j = 0;
+		while (str[i + j] == to_find[j] && (i + j) < l)
+		{
+			if (to_find[j + 1] == '\0')
+				return ((char *)(str + i));
+			j++;
+		}
 		i++;
 	}
+	return (NULL);
 }

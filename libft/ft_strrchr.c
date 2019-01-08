@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   option.c                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:09:32 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/08 18:32:45 by kemartin         ###   ########.fr       */
+/*   Created: 2018/11/05 18:34:07 by kemartin          #+#    #+#             */
+/*   Updated: 2018/11/07 14:35:19 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-int		is_opts(char c)
+char	*ft_strrchr(const char *s, int c)
 {
-	return (c == 'l' || c == 'R' || c == 'a' || c == 'r' || c == 't');
-}
+	int		i;
+	char	*tmp;
 
-void	options(char *str, t_struct *tab)
-{
-	int			i;
-	int			j;
-
-	i = 1;
-	j = ft_strlen(tab->opt);
-	while (str[i])
+	i = 0;
+	tmp = NULL;
+	while (s[i])
 	{
-		if (is_opts(str[i]))
-			tab->opt[j++] = str[i];
+		if (s[i] == (char)c)
+			tmp = (char *)s + i;
 		i++;
 	}
+	if ((char)c == '\0')
+		return ((char *)(s + i));
+	return (tmp);
 }
