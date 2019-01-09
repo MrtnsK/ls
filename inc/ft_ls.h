@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/09 19:43:43 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/09 20:16:44 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void				ft_list_push_back(t_lst **lst, char *name);
 int					is_file(char *name);
 int					is_opts(char c);
 void				options(char *str, t_struct *tab);
-int					simple_ls(t_struct *tab);
-int					ls_opt_a(t_struct *tab);
+t_struct			*simple_ls(t_struct *tab);
+t_struct			*ls_opt_a(t_struct *tab);
 
 #endif
  

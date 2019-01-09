@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:57:47 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/09 19:43:56 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/09 20:16:28 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	showme(t_lst *lst)
 {	
 	while (lst)
 	{
-		if (!is_file(lst->name))
+		if (is_file(lst->name) < 0)
 		{
 			printf("name: %s\n", lst->name);
 			printf("inode: %llu\n", lst->stat->st_ino);
@@ -65,7 +65,7 @@ int		main(int ac, char **av)
 	&& !(lst = malloc(sizeof(t_lst))))
 		return (0);
 	if (ac == 1)
-		return (simple_ls(tab));
+		simple_ls(tab);
 	i = 1;
 	j = 0;
 	while (i < ac)
