@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:57:47 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/08 19:25:04 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/09 14:44:56 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ int		main(int ac, char **av)
 	int			i;
 	int			j;
 	t_struct	*tab;
+	t_lst		*lst;
 
-	if (!(tab = (t_struct *)malloc(sizeof(t_struct))) && !(tab->lst = malloc(sizeof(t_lst))))
+	if (!(tab = (t_struct *)malloc(sizeof(t_struct)))
+	&& !(lst = malloc(sizeof(t_lst))))
 		return (0);
 	i = 1;
 	j = 0;
@@ -38,9 +40,10 @@ int		main(int ac, char **av)
 		if (av[i][0] == '-')
 			options(av[i], tab);
 		else if (av[i][0] != '-')
-			ft_list_push_back(tab->lst, av[i]);
+			ft_list_push_back(&lst, av[i]);
 		i++;
 	}
+	tab->lst = &lst;
 	free(tab);
 	return (0);
 }
