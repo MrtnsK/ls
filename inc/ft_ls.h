@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/09 14:44:27 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/09 15:00:22 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 # include <stdlib.h>
 # include <dirent.h>
 
+# define OPT_L 1
+# define OPT_UR 2
+# define OPT_A 4
+# define OPT_LR 8
+# define OPT_T 16
 
 // typedef	struct		s_stat
 // {
@@ -59,7 +64,7 @@ typedef struct		s_lst
 
 typedef struct		s_struct
 {
-	char			*opt;
+	char			opt;
 	t_lst			**lst;
 }					t_struct;
 
