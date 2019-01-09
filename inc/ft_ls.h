@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/09 15:00:22 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/09 18:47:03 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,6 @@
 # define OPT_LR 8
 # define OPT_T 16
 
-// typedef	struct		s_stat
-// {
-//     dev_t			st_dev;      /* ID du périphérique contenant le fichier */
-//     ino_t			st_ino;      /* Numéro inœud */
-//     mode_t			st_mode;     /* Protection */
-//     nlink_t			st_nlink;    /* Nb liens matériels */
-//     uid_t			st_uid;      /* UID propriétaire */
-//     gid_t			st_gid;      /* GID propriétaire */
-//     dev_t			st_rdev;     /* ID périphérique (si fichier spécial) */
-//     off_t			st_size;     /* Taille totale en octets */
-//     blksize_t		st_blksize;  /* Taille de bloc pour E/S */
-//     blkcnt_t		st_blocks;   /* Nombre de blocs alloués */
-//     time_t			time_a;    /* Heure dernier accès */
-//     time_t			time_m;    /* Heure dernière modification */
-//     time_t			time_c;    /* Heure dernier changement état */
-// }					t_stat;
 
 typedef struct stat	t_stat;
 typedef struct dir	t_dir;

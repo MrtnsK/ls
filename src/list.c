@@ -6,25 +6,44 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:49:26 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/09 14:48:00 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/09 19:05:14 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+t_lst	*files_err(char *name)
+{
+	ft_putstr("ft_ls: ");
+	ft_putstr(name);
+	ft_putendl(": No such file or directory");
+	return (NULL);
+}	
+
+char	*ft_title(char *title)
+{
+	int		i;
+
+	while (ft_strchr(title, '/'))
+		title = ft_strchr(title, '/') + 1;
+	i = ft_strlen(title);
+	while (i && title[i] == '.' ? title[i] = '\0' : 1)
+		i--;
+	return (title);
+}
+
 t_lst	*ft_create_elem(char *name)
 {
 	t_lst		*lst;
-	t_stat		*stats;
+	struct stat	stbuf;
 
-	stats = NULL;
-	if (!(lst = (t_lst *)malloc(sizeof(t_lst))))
+	if ((!(lst = (t_lst *)malloc(sizeof(t_lst)))))
 		return (NULL);
 	lst->next = NULL;
-	lst->name = ft_strdup(name);
-	if (!(stat(name, stats)))
-		return (NULL);
-	lst->stat = stats;
+	lst->name = ft_strdup(ft_title(name));
+	if (stat(name, &stbuf) < 0)
+		return (files_err(lst->name));
+	lst->stat = &stbuf;
 	return (lst);
 }
 
