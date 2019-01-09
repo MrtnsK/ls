@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:49:26 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/09 19:05:14 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/09 19:09:32 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ t_lst	*ft_create_elem(char *name)
 	if ((!(lst = (t_lst *)malloc(sizeof(t_lst)))))
 		return (NULL);
 	lst->next = NULL;
-	lst->name = ft_strdup(ft_title(name));
+	lst->name = ft_strdup(name);
 	if (stat(name, &stbuf) < 0)
-		return (files_err(lst->name));
+		return (files_err(ft_title(name)));
 	lst->stat = &stbuf;
 	return (lst);
 }

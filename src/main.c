@@ -6,27 +6,38 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:57:47 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/09 19:03:22 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/09 19:43:56 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
 void	showme(t_lst *lst)
-{
+{	
 	while (lst)
 	{
-		printf("name: %s\n", lst->name);
-		printf("inode: %llu\n", lst->stat->st_ino);
-		printf("owner: %u\n", lst->stat->st_uid);
-		printf("group: %u\n", lst->stat->st_gid);
-		printf("perms: %o\n", lst->stat->st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
-		printf("links: %d\n", lst->stat->st_nlink);
-		printf("size: %lld\n", lst->stat->st_size); /* you may use %lld */
-		printf("atime: %s", ctime(&lst->stat->st_atime));
-		printf("mtime: %s", ctime(&lst->stat->st_mtime));
-		printf("ctime: %s", ctime(&lst->stat->st_ctime));
-		printf("\n\n\n");
+		if (!is_file(lst->name))
+		{
+			printf("name: %s\n", lst->name);
+			printf("inode: %llu\n", lst->stat->st_ino);
+			printf("owner: %u\n", lst->stat->st_uid);
+			printf("group: %u\n", lst->stat->st_gid);
+			printf("perms: %o\n", lst->stat->st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
+			printf("links: %d\n", lst->stat->st_nlink);
+			printf("size: %lld\n", lst->stat->st_size); /* you may use %lld */
+			printf("atime: %s", ctime(&lst->stat->st_atime));
+			printf("mtime: %s", ctime(&lst->stat->st_mtime));
+			printf("ctime: %s", ctime(&lst->stat->st_ctime));
+			printf("\n\n\n");
+		}
+		else
+		{
+			ft_putstr(lst->name);
+			if (lst->next)
+				ft_putchar(' ');
+			else
+				ft_putchar('\n');
+		}
 		lst = lst->next;
 	}
 }
@@ -53,6 +64,8 @@ int		main(int ac, char **av)
 	if (!(tab = (t_struct *)malloc(sizeof(t_struct)))
 	&& !(lst = malloc(sizeof(t_lst))))
 		return (0);
+	if (ac == 1)
+		return (simple_ls(tab));
 	i = 1;
 	j = 0;
 	while (i < ac)
@@ -63,6 +76,8 @@ int		main(int ac, char **av)
 			ft_list_push_back(&lst, av[i]);
 		i++;
 	}
+	if (tab->opt == OPT_A)
+		ls_opt_a(tab);
 	tab->lst = &lst;
 	showme(lst);
 	free(tab);

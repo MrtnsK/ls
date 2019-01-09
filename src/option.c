@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:09:32 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/09 15:07:02 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/09 19:39:37 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	illegal_opt(char c)
 	ft_putstr("ft_ls: illegal option -- ");
 	ft_putchar(c);
 	ft_putchar('\n');
-	ft_putendl("usage: ls [-lRart] [file ...]");
+	ft_putendl("usage: ft_ls [-lRart] [file ...]");
 	exit(1);
 }
 
