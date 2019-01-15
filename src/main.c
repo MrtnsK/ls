@@ -6,17 +6,17 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:57:47 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/15 18:55:40 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/15 22:36:27 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void showme(t_lst *lst)
+void	showme(t_lst *lst)
 {
 	while (lst)
 	{
-		if (is_file(lst->name) < 0)
+		if (is_file(lst->name) > 0)
 		{
 			printf("name: %s\n", lst->name);
 //			printf("inode: %llu\n", lst->stat.st_ino);
@@ -44,7 +44,7 @@ void showme(t_lst *lst)
 	}
 }
 
-int is_file(char *name)
+int		is_file(char *name)
 {
 	DIR *fd;
 
@@ -55,7 +55,7 @@ int is_file(char *name)
 	return (-1);
 }
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	int i;
 	int j;

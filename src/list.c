@@ -20,18 +20,6 @@ t_lst	*files_err(char *name)
 	return (NULL);
 }	
 
-char	*ft_title(char *title)
-{
-	int		i;
-
-	while (ft_strchr(title, '/'))
-		title = ft_strchr(title, '/') + 1;
-	i = ft_strlen(title);
-	while (i && title[i] == '.' ? title[i] = '\0' : 1)
-		i--;
-	return (title);
-}
-
 t_lst	*ft_create_elem(char *name)
 {
 	t_lst		*lst;
@@ -60,30 +48,35 @@ void	ft_list_push_back(t_lst **lst, char *name)
 		(*lst) = ft_create_elem(name);
 }
 
+void	lstcpy(t_lst **new, t_lst **old)
+{
+	(*new) = (*old);
+}
+
 void	ft_sort(t_lst **lst)
 {
 	t_lst	*tmp1;
 	t_lst	*tmp2;
 	t_lst	*tmp3;
-	void	*trie;
+	t_lst	*trie;
 
 	tmp1 = (*lst);
 	while (tmp1)
 	{
 		tmp3 = tmp1;
-		trie = tmp1->name;
+		lstcpy(&trie, &tmp1);
 		tmp2 = tmp1->next;
 		while (tmp2)
 		{
-			if (ft_strcmp(trie, tmp2->name) > 0)
+			if (ft_strcmp(trie->name, tmp2->name) > 0)
 			{
 				tmp3 = tmp2;
-				trie = tmp3->name;
+				lstcpy(&trie, &tmp3);
 			}
 			tmp2 = tmp2->next;
 		}
-		tmp3->name = tmp1->name;
-		tmp1->name = trie;
+		lstcpy(&tmp3, &tmp1);
+		lstcpy(&tmp1, &trie);
 		tmp1 = tmp1->next;
 	}
 }
