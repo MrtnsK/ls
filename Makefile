@@ -6,7 +6,7 @@
 #    By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 15:54:25 by kemartin          #+#    #+#              #
-#    Updated: 2019/01/15 17:13:31 by agissing         ###   ########.fr        #
+#    Updated: 2019/01/15 19:47:27 by kemartin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ NAME	= ft_ls
 SRC		=	main.c \
 			option.c \
 			list.c \
-			ls.c
+			ls.c \
+			modif.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:57:47 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/15 18:17:22 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/15 18:55:40 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,12 @@ int main(int ac, char **av)
 			ft_list_push_back(&lst, av[i]);
 		i++;
 	}
+	tab->lst = &lst;
 	if (tab->opt & OPT_A)
 		ls_opt_a(tab);
-	tab->lst = &lst;
-	showme(lst);
+	if (tab->opt & OPT_L)
+		ls_opt_l(tab);	
+	//showme(lst);
 	free(tab);
 	return (0);
 }

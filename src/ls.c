@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls.c                                               :+:      :+:    :+:   */
+/*   lst.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 19:21:24 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/15 17:23:19 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/15 18:49:41 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,44 @@ t_struct	*ls_opt_a(t_struct *tab)
 	{
 		ft_putstr((*lst)->name);
 		if ((*lst)->next)
-			ft_putchar(' ');
+			ft_putstr("  ");
 		else
 			ft_putchar('\n');
+		*lst = (*lst)->next;
+	}
+	return (tab);
+}
+
+t_struct	*ls_opt_l(t_struct *tab)
+{
+	DIR				*d;
+	struct dirent	*dir;
+	t_lst			**lst;
+
+	if (!(lst = malloc(sizeof(t_lst *))))
+		return (0);
+	*lst = NULL;
+	d = opendir(".");
+	if (d)
+		while ((dir = readdir(d)))
+			ft_list_push_back(lst, dir->d_name);
+	tab->lst = lst;
+	closedir(d);
+	ft_sort(tab->lst);
+	while (*lst)
+	{
+		if (is_file((*lst)->name) == 1)
+		{
+			//printf("%s  ", write_perms((*lst)->stat.st_mode, (*lst)->name));
+			printf("%o  ", (*lst)->stat.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
+			printf("%d  ", (*lst)->stat.st_nlink);
+			printf("%s  ", (*lst)->pswd->pw_name);
+			printf("%s  ", (*lst)->grp->gr_name);
+			printf("%lld  ", (*lst)->stat.st_size);
+			printf("%s  ",  cut_time_opt(ctime(&(*lst)->stat.st_ctime)));
+			printf("%s  ", (*lst)->name);
+			printf("\n");
+		}
 		*lst = (*lst)->next;
 	}
 	return (tab);
