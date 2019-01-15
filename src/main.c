@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:57:47 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/15 17:55:07 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/15 18:12:27 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void showme(t_lst *lst)
 			printf("name: %s\n", lst->name);
 			printf("inode: %llu\n", lst->stat.st_ino);
 			printf("owner: %u\n", lst->stat.st_uid);
+			printf("owner: %s\n", lst->pswd->pw_name);
+			printf("group: %s\n", lst->grp->gr_name);
 			printf("group: %u\n", lst->stat.st_gid);
 			printf("perms: %o\n", lst->stat.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
 			printf("links: %d\n", lst->stat.st_nlink);

@@ -42,6 +42,8 @@ t_lst	*ft_create_elem(char *name)
 	lst->name = ft_strdup(name);
 	if (stat(name, &lst->stat) < 0)
 		return (files_err(ft_title(name)));
+	lst->pswd =	getpwuid(lst->stat.st_uid);
+	lst->grp = getgrgid(lst->stat.st_gid);
 	return (lst);
 }
 

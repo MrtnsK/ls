@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/15 17:52:24 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/15 18:09:16 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <dirent.h>
+# include <pwd.h>
+# include <grp.h>
 
 # define OPT_L 1
 # define OPT_UR 2
@@ -27,8 +29,10 @@
 # define OPT_T 16
 
 
-typedef struct stat	t_stat;
-typedef struct dir	t_dir;
+typedef struct stat		t_stat;
+typedef struct dir		t_dir;
+typedef struct passwd 	t_pswd;
+typedef struct group	t_grp;
 // typedef	struct		s_dir
 // {
 //     ino_t			d_ino;       /* numéro d'inœud */
@@ -38,27 +42,29 @@ typedef struct dir	t_dir;
 //     char			d_name[256]; /* nom du fichier */
 // }					t_dir;
 
-typedef struct		s_lst
+typedef struct			s_lst
 {
-	char			*name;
-	t_stat			stat;
-	t_dir			*dir;
-	struct s_lst	*next;
-}					t_lst;
+	char				*name;
+	t_stat				stat;
+	t_pswd				*pswd;
+	t_grp				*grp;
+	t_dir				*dir;
+	struct s_lst		*next;
+}						t_lst;
 
-typedef struct		s_struct
+typedef struct			s_struct
 {
-	char			opt;
-	t_lst			**lst;
-}					t_struct;
+	char				opt;
+	t_lst				**lst;
+}						t_struct;
 
-t_lst				*ft_create_elem(char *name);
-void				ft_list_push_back(t_lst **lst, char *name);
-int					is_file(char *name);
-int					is_opts(char c);
-void				options(char *str, t_struct *tab);
-t_struct			*simple_ls(t_struct *tab);
-t_struct			*ls_opt_a(t_struct *tab);
-void				ft_sort(t_lst **lst);
+t_lst					*ft_create_elem(char *name);
+void					ft_list_push_back(t_lst **lst, char *name);
+int						is_file(char *name);
+int						is_opts(char c);
+void					options(char *str, t_struct *tab);
+t_struct				*simple_ls(t_struct *tab);
+t_struct				*ls_opt_a(t_struct *tab);
+void					ft_sort(t_lst **lst);
 
 #endif
