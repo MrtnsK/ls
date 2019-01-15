@@ -35,15 +35,13 @@ char	*ft_title(char *title)
 t_lst	*ft_create_elem(char *name)
 {
 	t_lst		*lst;
-	struct stat	stbuf;
 
 	if ((!(lst = (t_lst *)malloc(sizeof(t_lst)))))
 		return (NULL);
 	lst->next = NULL;
 	lst->name = ft_strdup(name);
-	if (stat(name, &stbuf) < 0)
+	if (stat(name, &lst->stat) < 0)
 		return (files_err(ft_title(name)));
-	lst->stat = &stbuf;
 	return (lst);
 }
 

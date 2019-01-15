@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/15 17:01:26 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/15 17:52:24 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct dir	t_dir;
 typedef struct		s_lst
 {
 	char			*name;
-	t_stat			*stat;
+	t_stat			stat;
 	t_dir			*dir;
 	struct s_lst	*next;
 }					t_lst;
