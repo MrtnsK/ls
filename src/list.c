@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.c                                             :+:      :+:    :+:   */
+/*   lst.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:49:26 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/09 19:09:32 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/15 16:58:46 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,32 @@ void	ft_list_push_back(t_lst **lst, char *name)
 	}
 	else
 		(*lst) = ft_create_elem(name);
+}
+
+void	ft_sort(t_lst **lst)
+{
+	t_lst	*tmp1;
+	t_lst	*tmp2;
+	t_lst	*tmp3;
+	void	*trie;
+
+	tmp1 = (*lst);
+	while (tmp1)
+	{
+		tmp3 = tmp1;
+		trie = tmp1->name;
+		tmp2 = tmp1->next;
+		while (tmp2)
+		{
+			if (ft_strcmp(trie, tmp2->name) > 0)
+			{
+				tmp3 = tmp2;
+				trie = tmp3->name;
+			}
+			tmp2 = tmp2->next;
+		}
+		tmp3->name = tmp1->name;
+		tmp1->name = trie;
+		tmp1 = tmp1->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/09 20:16:44 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/15 17:01:26 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ int					is_opts(char c);
 void				options(char *str, t_struct *tab);
 t_struct			*simple_ls(t_struct *tab);
 t_struct			*ls_opt_a(t_struct *tab);
+void				ft_sort(t_lst **lst);
 
 #endif
- 
