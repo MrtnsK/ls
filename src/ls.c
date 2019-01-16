@@ -89,13 +89,13 @@ t_struct	*ls_opt_l(t_struct *tab)
 	{
 		if (is_file((*lst)->name) == 1)
 		{
-			printf("%s  ", write_perms((*lst)->stat.st_mode));
-			printf("%d  ", (*lst)->stat.st_nlink);
-			printf("%s  ", (*lst)->pswd->pw_name);
-			printf("%s  ", (*lst)->grp->gr_name);
-			printf("%lld  ", (*lst)->stat.st_size);
-			printf("%s  ",  cut_time_opt(ctime(&(*lst)->stat.st_ctime)));
-			printf("%s  ", (*lst)->name);
+			printf("%s ", write_perms((*lst)->stat.st_mode));
+			printf("%4d", (*lst)->stat.st_nlink);
+			printf("%10s ", (*lst)->pswd->pw_name);
+			printf("%11s ", (*lst)->grp->gr_name);
+			printf("%6lld ", (*lst)->stat.st_size);
+			printf("%s ",  cut_time_opt(ctime(&(*lst)->stat.st_ctime)));
+			printf("%s", (*lst)->name);
 			printf("\n");
 		}
 		*lst = (*lst)->next;
