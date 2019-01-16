@@ -28,7 +28,7 @@ t_struct	*simple_ls(t_struct *tab)
 				ft_list_push_back(lst, dir->d_name);
 	tab->lst = lst;
 	closedir(d);
-	ft_sort(tab->lst);
+	ft_sort(lst);
 	while (*lst)
 	{
 		ft_putstr((*lst)->name);
@@ -84,7 +84,7 @@ t_struct	*ls_opt_l(t_struct *tab)
 			ft_list_push_back(lst, dir->d_name);
 	tab->lst = lst;
 	closedir(d);
-	ft_sort(tab->lst);
+	ft_sort(lst);
 	while (*lst)
 	{
 		if (is_file((*lst)->name) == 1)
