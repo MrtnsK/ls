@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/15 22:36:45 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:00:35 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_struct				*ls_opt_a(t_struct *tab);
 t_struct				*ls_opt_l(t_struct *tab);
 void					ft_sort(t_lst **lst);
 char					*cut_time_opt(char *str);
-char					*write_perms(int perm, char *name);
+char					*write_perms(int perm);
 char					*ft_title(char *title);
 void					showme(t_lst *lst);
 

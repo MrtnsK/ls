@@ -89,8 +89,7 @@ t_struct	*ls_opt_l(t_struct *tab)
 	{
 		if (is_file((*lst)->name) == 1)
 		{
-			//printf("%s  ", write_perms((*lst)->stat.st_mode, (*lst)->name));
-			printf("%o  ", (*lst)->stat.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
+			printf("%s  ", write_perms((*lst)->stat.st_mode));
 			printf("%d  ", (*lst)->stat.st_nlink);
 			printf("%s  ", (*lst)->pswd->pw_name);
 			printf("%s  ", (*lst)->grp->gr_name);

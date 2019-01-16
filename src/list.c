@@ -65,7 +65,8 @@ void	ft_sort(t_lst **lst)
 	t_lst	*trie;
 
 	tmp1 = (*lst);
-	trie = malloc(sizeof(t_list));
+	if (!(trie = malloc(sizeof(t_lst))))
+		return ;
 	while (tmp1)
 	{
 		tmp3 = tmp1;

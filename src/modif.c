@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 19:47:31 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/15 21:27:50 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:12:42 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,23 @@ char	*cut_time_opt(char *str)
 	return (date);
 }
 
-//lst->stat.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO)
-
-char	*write_perms(int perm, char *name)
+char	*write_perms(int perm)
 {
 	char	*str;
 
 	if (!(str = (char*)malloc(sizeof(char) * 11)))
 		return (NULL);
-	if (is_file(name) == 0)
-		str[0] = 'd';
-	else
-		str[0] = '-';
-	(void)perm;
+	str[0] = (S_ISDIR(perm) ? 'd' : '-');
+	str[1] = ((perm & S_IRUSR) ? 'r' : '-');
+	str[2] = ((perm & S_IWUSR) ? 'w' : '-');
+	str[3] = ((perm & S_IXUSR) ? 'x' : '-');
+	str[4] = ((perm & S_IRGRP) ? 'r' : '-');
+	str[5] = ((perm & S_IWGRP) ? 'w' : '-');
+	str[6] = ((perm & S_IXGRP) ? 'x' : '-');
+	str[7] = ((perm & S_IROTH) ? 'r' : '-');
+	str[8] = ((perm & S_IWOTH) ? 'w' : '-');
+	str[9] = ((perm & S_IXOTH) ? 'x' : '-');
+	str[10] = '\0';
 	return (str);
 }
 
