@@ -102,3 +102,34 @@ t_struct	*ls_opt_l(t_struct *tab)
 	}
 	return (tab);
 }
+
+t_struct	*ls_opt_la(t_struct *tab)
+{
+	DIR				*d;
+	struct dirent	*dir;
+	t_lst			**lst;
+
+	if (!(lst = malloc(sizeof(t_lst *))))
+		return (0);
+	*lst = NULL;
+	d = opendir(".");
+	if (d)
+		while ((dir = readdir(d)))
+			ft_list_push_back(lst, dir->d_name);
+	tab->lst = lst;
+	closedir(d);
+	ft_sort(lst);
+	while (*lst)
+	{
+		printf("%s ", write_perms((*lst)->stat.st_mode));
+		printf("%4d", (*lst)->stat.st_nlink);
+		printf("%10s ", (*lst)->pswd->pw_name);
+		printf("%11s ", (*lst)->grp->gr_name);
+		printf("%6lld ", (*lst)->stat.st_size);
+		printf("%s ",  cut_time_opt(ctime(&(*lst)->stat.st_ctime)));
+		printf("%s", (*lst)->name);
+		printf("\n");
+		*lst = (*lst)->next;
+	}
+	return (tab);
+}
