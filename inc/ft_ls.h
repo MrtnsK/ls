@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/16 20:30:25 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/17 19:19:41 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ char					*cut_time_opt(char *str);
 char					*write_perms(int perm);
 char					*ft_title(char *title);
 void					showme(t_lst *lst);
+void					reverse_lst(t_struct **tab);
 
 #endif
