@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:57:47 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/17 19:23:55 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/17 20:16:47 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int		is_file(char *name)
 
 void	wich_ls(t_struct **tab)
 {
-	if ((*tab)->opt & OPT_LR)
-		reverse_lst(&(*tab));
 	if (((*tab)->opt & OPT_A) && ((*tab)->opt & OPT_L))
 		ls_opt_la(*tab);
 	else if ((*tab)->opt & OPT_A)

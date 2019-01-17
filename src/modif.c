@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 19:47:31 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/17 19:26:19 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/17 20:26:55 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ char	*cut_time_opt(char *str)
 	return (date);
 }
 
-void	reverse_lst(t_struct **tab)
+void	reverse_lst(t_lst **lst)
 {
 	t_lst	*tmp1;
 	t_lst	*tmp2;
 	t_lst	*tmp3;
 
-	if (!(*tab)->lst || !(*(*tab)->lst)->next)
+	if (!(*lst) || !(*lst)->next)
 		return ;
-	tmp1 = (*(*tab)->lst);
+	tmp1 = (*lst);
 	tmp2 = tmp1->next;
 	tmp3 = tmp2->next;
 	tmp1->next = NULL;
@@ -48,7 +48,7 @@ void	reverse_lst(t_struct **tab)
 		tmp3 = tmp3->next;
 		tmp2->next = tmp1;
 	}
-	(*tab)->lst = &tmp2;
+	lst = &tmp2;
 }
 
 char	*write_perms(int perm)

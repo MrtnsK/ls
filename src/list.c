@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:49:26 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/16 20:34:06 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/17 20:21:55 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_lst	*files_err(char *name)
 	ft_putstr("ft_ls: ");
 	ft_putstr(name);
 	ft_putendl(": No such file or directory");
+	exit(0);
 	return (NULL);
 }	
 

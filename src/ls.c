@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 19:21:24 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/17 15:43:39 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/17 20:17:48 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_struct	*simple_ls(t_struct *tab)
 	tab->lst = lst;
 	closedir(d);
 	ft_sort(lst);
+	if (tab->opt & OPT_LR)
+		reverse_lst(lst);
 	while (*lst)
 	{
 		ft_putstr((*lst)->name);
@@ -57,6 +59,8 @@ t_struct	*ls_opt_a(t_struct *tab)
 	tab->lst = lst;
 	closedir(d);
 	ft_sort(lst);
+	if (tab->opt & OPT_LR)
+		reverse_lst(lst);
 	while (*lst)
 	{
 		ft_putstr((*lst)->name);
@@ -85,6 +89,8 @@ t_struct	*ls_opt_l(t_struct *tab)
 	tab->lst = lst;
 	closedir(d);
 	ft_sort(lst);
+	if (tab->opt & OPT_LR)
+		reverse_lst(lst);
 	while (*lst)
 	{
 		if (is_file((*lst)->name) == 1)
@@ -119,6 +125,8 @@ t_struct	*ls_opt_la(t_struct *tab)
 	tab->lst = lst;
 	closedir(d);
 	ft_sort(lst);
+	if (tab->opt & OPT_LR)
+		reverse_lst(lst);
 	while (*lst)
 	{
 		printf("%s ", write_perms((*lst)->stat.st_mode));
