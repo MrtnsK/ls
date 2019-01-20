@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/17 20:18:14 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/20 20:32:44 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,35 +39,48 @@ typedef struct group	t_grp;
 //     off_t			d_off;       /* décalage jusqu'à la dirent suivante */
 //     unsigned short	d_reclen;    /* longueur de cet enregistrement */
 //     unsigned char	d_type;      /* type du fichier */
-//     char			d_name[256]; /* nom du fichier */
+//     char				d_name[256]; /* nom du fichier */
 // }					t_dir;
 
 typedef struct			s_lst
 {
-	char				*name;
-	t_stat				stat;
-	t_pswd				*pswd;
-	t_grp				*grp;
-	t_dir				*dir;
-	struct s_lst		*next;
+	char			*name;
+	t_stat			stat;
+	t_pswd			*pswd;
+	t_grp			*grp;
+	t_dir			*dir;
+	struct s_lst	*next;
 }						t_lst;
+
+typedef struct			s_param
+{
+	char			*name;
+	t_lst			**child;
+	struct s_param	*next;
+}						t_param;
 
 typedef struct			s_struct
 {
-	char				opt;
-	t_lst				**lst;
+	char		opt;
+	t_param		**names;
 }						t_struct;
 
-t_lst					*ft_create_elem(char *name);
-void					ft_list_push_back(t_lst **lst, char *name);
+t_lst					*ft_create_lst(char *name);
+void					ft_lst_push_back(t_lst **lst, char *name, char *source);
+
+char					*join_path(char *path1, char *path2);
+
+t_param					*ft_create_param(char *name);
+void					ft_param_push_back(t_param **lst, char *name);
+
+void					get_childs(t_param *params, char opt);
+void					simple_print(t_lst *lst, char opt);
+void					list_print(t_lst *lst, char opt);
+
 int						is_file(char *name);
 int						is_opts(char c);
 void					options(char *str, t_struct *tab);
-t_struct				*simple_ls(t_struct *tab);
-t_struct				*ls_opt_a(t_struct *tab);
-t_struct				*ls_opt_l(t_struct *tab);
-t_struct				*ls_opt_la(t_struct *tab);
-void					ft_sort(t_lst **lst);
+void					ft_sort(t_lst **lst, char opt);
 char					*cut_time_opt(char *str);
 char					*write_perms(int perm);
 char					*ft_title(char *title);
