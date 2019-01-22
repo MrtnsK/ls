@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:57:47 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/20 20:27:21 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/22 14:46:36 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int		main(int ac, char **av)
 			options(av[i++], &tab);
 		else if (av[i][0] != '-')
 			ft_param_push_back(tab.names, av[i++]);
+	if (!*tab.names)
+		ft_param_push_back(tab.names, ".");
 	ls(&tab);
 	return (0);
 }

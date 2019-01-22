@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   param.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agissing <agissing@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:13:31 by agissing          #+#    #+#             */
-/*   Updated: 2019/01/20 17:53:34 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/22 13:51:18 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_param	*ft_create_param(char *name)
 	if ((!(lst = (t_param *)malloc(sizeof(t_param)))))
 		return (NULL);
 	lst->next = NULL;
-	lst->name = ft_strdup(name);
+	lst->name = name != NULL ? ft_strdup(name) : ".";
 	if (!(lst->child = (t_lst **)malloc(sizeof(t_lst *))))
 		return (NULL);
 	*(lst->child) = NULL;
