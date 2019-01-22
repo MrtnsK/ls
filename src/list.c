@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:49:26 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/22 16:42:54 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/22 18:50:56 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,6 @@ void	lstcpy(t_lst *new, t_lst *old)
 	new->pswd = getpwuid(new->stat.st_uid);
 	new->grp = getgrgid(new->stat.st_gid);
 }
-
-/*
-** Tri trop lourd (4 copies de liste en while)
-*/
 
 void	ft_sort(t_lst **lst, char opt)
 {
