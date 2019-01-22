@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 19:21:24 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/22 19:55:48 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/22 20:34:20 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ void	get_childs(t_param *p, char opt)
 {
 	DIR				*d;
 	struct dirent	*dir;
-	t_param		*prev;
 
-	prev = NULL;
 	while (p)
 	{
 		if ((d = opendir(p->name)))
@@ -34,15 +32,13 @@ void	get_childs(t_param *p, char opt)
 				if (opt & OPT_A || dir->d_name[0] != '.')
 					ft_lst_push_back(p->child, dir->d_name, p->name);
 			closedir(d);
-			prev = p;
-			p = p->next;
 		}
 		else
 		{
+			p->ok = 0;
 			files_err(p->name);
-			remove_params(prev, &p);
-			p = !prev ? p->next : prev->next;
 		}
+		p = p->next;
 	}
 }
 
