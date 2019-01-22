@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 16:13:31 by agissing          #+#    #+#             */
-/*   Updated: 2019/01/22 16:32:13 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/22 20:01:01 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,24 @@ t_param	*ft_create_param(char *name)
 	if ((!(lst = (t_param *)malloc(sizeof(t_param)))))
 		return (NULL);
 	lst->next = NULL;
-	lst->name = name != NULL ? ft_strdup(name) : ".";
+	lst->name = name != NULL ? name : ".";
 	if (!(lst->child = (t_lst **)malloc(sizeof(t_lst *))))
 		return (NULL);
 	*(lst->child) = NULL;
 	return (lst);
+}
+
+void	remove_params(t_param *prev, t_param **p)
+{
+	t_param		*tmp;
+
+	tmp = *p;
+	if (!prev)
+		*p = (*p)->next;
+	else
+		prev->next = (*p)->next;
+	free(*tmp->child);
+	free(tmp);
 }
 
 void	ft_param_push_back(t_param **lst, char *name)

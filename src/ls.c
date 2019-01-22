@@ -6,17 +6,26 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 19:21:24 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/22 18:40:17 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:55:48 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+void	files_err(char *name)
+{
+	ft_putstr_fd("ft_ls: ", 2);
+	ft_putstr_fd(name, 2);
+	ft_putendl_fd(": No such file or directory", 2);
+}	
+
 void	get_childs(t_param *p, char opt)
 {
 	DIR				*d;
 	struct dirent	*dir;
+	t_param		*prev;
 
+	prev = NULL;
 	while (p)
 	{
 		if ((d = opendir(p->name)))
@@ -25,8 +34,15 @@ void	get_childs(t_param *p, char opt)
 				if (opt & OPT_A || dir->d_name[0] != '.')
 					ft_lst_push_back(p->child, dir->d_name, p->name);
 			closedir(d);
+			prev = p;
+			p = p->next;
 		}
-		p = p->next;
+		else
+		{
+			files_err(p->name);
+			remove_params(prev, &p);
+			p = !prev ? p->next : prev->next;
+		}
 	}
 }
 

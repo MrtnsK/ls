@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/22 18:11:22 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:46:22 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ void					showme(t_lst *lst);
 
 void					reverse_lst(t_lst **lst);
 void					reverse_param(t_param **lst);
+void					remove_params(t_param *prev, t_param **p);
 
 #endif
