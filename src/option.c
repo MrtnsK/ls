@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:09:32 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/18 15:42:27 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/23 16:17:30 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	options(char *str, t_struct *tab)
 			tab->opt |= OPT_LR;
 		else if (str[i] == 't')
 			tab->opt |= OPT_T;
+		else if (str[i] == 'G')
+			tab->opt |= OPT_G;
 		else
 			illegal_opt(str[i]);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/22 20:33:57 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/23 16:48:58 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,17 @@
 # define OPT_A 4
 # define OPT_LR 8
 # define OPT_T 16
+# define OPT_G 32
+# define BLUE [0;34m
+# define RED [0;31m
+# define MAGENTA [0;35m
+# define END [0m
 
 
 typedef struct stat		t_stat;
 typedef struct dir		t_dir;
 typedef struct passwd 	t_pswd;
 typedef struct group	t_grp;
-// typedef	struct		s_dir
-// {
-//     ino_t			d_ino;       /* numéro d'inœud */
-//     off_t			d_off;       /* décalage jusqu'à la dirent suivante */
-//     unsigned short	d_reclen;    /* longueur de cet enregistrement */
-//     unsigned char	d_type;      /* type du fichier */
-//     char				d_name[256]; /* nom du fichier */
-// }					t_dir;
 
 typedef struct			s_lst
 {

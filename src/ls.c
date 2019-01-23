@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 19:21:24 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/22 20:34:20 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/23 17:43:15 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,22 @@ void	get_childs(t_param *p, char opt)
 	}
 }
 
+void	print_G(t_lst *lst)
+{
+	if (S_ISDIR(lst->stat.st_mode))
+		printf("\033[1;36m");
+	else if (S_ISLNK(lst->stat.st_mode))
+		printf("\033[0;35m");
+	else if (lst->stat.st_mode & S_IXUSR)
+		printf("\033[0;31m");
+	else if (S_ISCHR(lst->stat.st_mode))
+		printf("\033[43m\033[34m");
+	else if (S_ISBLK(lst->stat.st_mode))
+		printf("\033[46m\033[34m");
+	printf("%s", ft_title(lst->name));
+	printf("\033[0m");
+}
+
 void	simple_print(t_lst *lst, char opt)
 {
 	ft_sort(&lst, opt);
@@ -49,7 +65,8 @@ void	simple_print(t_lst *lst, char opt)
 		reverse_lst(&lst);
 	while (lst)
 	{
-		ft_putstr(ft_title(lst->name));
+		opt & OPT_G ? print_G(lst) \
+		: ft_putstr(ft_title(lst->name));
 		if (lst->next)
 			ft_putstr("  ");
 		else
@@ -71,7 +88,8 @@ void	list_print(t_lst *lst, char opt)
 		printf("%11s ", lst->grp->gr_name);
 		printf("%6lld ", lst->stat.st_size);
 		printf("%s ", cut_time_opt(ctime(&lst->stat.st_ctime)));
-		printf("%s", ft_title(lst->name));
+		opt & OPT_G ? print_G(lst) \
+		: printf("%s", ft_title(lst->name));
 		printf("\n");
 		lst = lst->next;
 	}
