@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/25 16:25:21 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/25 19:52:28 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void					ft_addnbr(t_buf *i, int nbr);
 
 void					total(t_buf *i, t_lst *lst);
 void					files_err(char *name);
+void					files_eacces(char *name);
 
 void					leading(int size, char *str, t_buf *i);
 void					leading_nbr(int size, int nbr, t_buf *i);
