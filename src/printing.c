@@ -6,7 +6,7 @@
 /*   By: agissing <agissing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:57:16 by agissing          #+#    #+#             */
-/*   Updated: 2019/01/25 12:57:51 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/25 14:16:45 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,14 @@ void	list_print(t_lst *lst, char opt, t_buf *i)
 	ft_sort(&lst, opt);
 	if (opt & OPT_LR)
 		reverse_lst(&lst);
+	total(i, lst);
 	while (lst)
 	{
 		leading(11, write_perms(lst->stat.st_mode), i);
 		leading_nbr(2, lst->stat.st_nlink, i);
 		leading(10, lst->pswd->pw_name, i);
 		leading(12, lst->grp->gr_name, i);
-		leading_nbr(3, lst->stat.st_size, i);
+		leading_nbr(5, lst->stat.st_size, i);
 		leading(13, cut_time_opt(ctime(&lst->stat.st_ctime)), i);
 		opt & OPT_G ? print_g(lst, i) : ft_addstr(i, ft_title(lst->name));
 		ft_addchar(i, '\n');

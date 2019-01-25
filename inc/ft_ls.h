@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/25 13:08:50 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/25 14:17:51 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define OPT_LR 8
 # define OPT_T 16
 # define OPT_G 32
+# define OPT_UA 64
+# define OPT_F 128
 
 #define BUFSIZE_LS 1024
 
@@ -74,6 +76,7 @@ void					ft_addtwostr(t_buf *i, char *str, char *str2);
 void					ft_addchar(t_buf *i, char c);
 void					ft_addnbr(t_buf *i, int nbr);
 
+void					total(t_buf *i, t_lst *lst);
 void					files_err(char *name);
 
 void					leading(int size, char *str, t_buf *i);
