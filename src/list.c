@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:49:26 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/23 20:10:30 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/25 12:39:21 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_lst	*ft_create_lst(char *name)
 	lst->name = name;
 	if (lstat(name, &lst->stat) < 0)
 		return (NULL);
-	lst->pswd =	getpwuid(lst->stat.st_uid);
+	lst->pswd = getpwuid(lst->stat.st_uid);
 	lst->grp = getgrgid(lst->stat.st_gid);
 	return (lst);
 }
@@ -59,19 +59,15 @@ void	ft_sort(t_lst **lst, char opt)
 	tmp1 = (*lst);
 	if (!(trie = malloc(sizeof(t_lst))))
 		return ;
-	while (tmp1)
+	while (tmp1 && (tmp3 = tmp1))
 	{
-		tmp3 = tmp1;
 		lstcpy(trie, tmp1);
 		tmp2 = tmp1->next;
 		while (tmp2)
 		{
 			if (opt & OPT_T ? trie->stat.st_ctime < tmp2->stat.st_ctime
 				: ft_strcmp(trie->name, tmp2->name) > 0)
-			{
-				tmp3 = tmp2;
-				lstcpy(trie, tmp3);
-			}
+				lstcpy(trie, (tmp3 = tmp2));
 			tmp2 = tmp2->next;
 		}
 		lstcpy(tmp3, tmp1);

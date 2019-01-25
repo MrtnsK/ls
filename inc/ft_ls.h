@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/23 20:20:38 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/25 13:08:50 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,23 @@ typedef struct			s_struct
 
 void					ft_putbuff(t_buf *i);
 void					ft_addstr(t_buf *i, char *str);
+void					ft_addtwostr(t_buf *i, char *str, char *str2);
 void					ft_addchar(t_buf *i, char c);
 void					ft_addnbr(t_buf *i, int nbr);
+
+void					files_err(char *name);
+
+void					leading(int size, char *str, t_buf *i);
+void					leading_nbr(int size, int nbr, t_buf *i);
+
+void					ls_rec(t_struct *tab);
+void					ls(t_struct *tab);
 
 t_lst					*ft_create_lst(char *name);
 void					ft_lst_push_back(t_lst **lst, char *name, char *source);
 
 char					*join_path(char *path1, char *path2);
 
-t_param					*ft_create_param(char *name);
 void					ft_param_push_back(t_param **lst, char *name);
 void					ft_param_push_after(t_param *lst, char *name);
 
@@ -86,14 +94,11 @@ void					get_childs(t_param *params, char opt);
 void					simple_print(t_lst *lst, t_buf *i, char opt);
 void					list_print(t_lst *lst, char opt, t_buf *i);
 
-int						is_file(char *name);
-int						is_opts(char c);
 void					options(char *str, t_struct *tab);
 void					ft_sort(t_lst **lst, char opt);
 char					*cut_time_opt(char *str);
 char					*write_perms(int perm);
 char					*ft_title(char *title);
-void					showme(t_lst *lst);
 
 void					reverse_lst(t_lst **lst);
 void					reverse_param(t_param **lst);
