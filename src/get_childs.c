@@ -6,7 +6,7 @@
 /*   By: agissing <agissing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:56:16 by agissing          #+#    #+#             */
-/*   Updated: 2019/01/25 13:06:42 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/25 16:02:20 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	get_childs(t_param *p, char opt)
 			if (lstat(p->name, &buffer) < 0 && !(p->ok = 0))
 				files_err(p->name);
 			else
-				ft_lst_push_back(p->child, p->name, ".");
+				ft_lst_push_back(p->child, p->name, "");
 		}
 		p = p->next;
 	}

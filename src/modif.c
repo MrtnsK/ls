@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 19:47:31 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/23 17:29:17 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/01/25 16:29:23 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,12 @@ char	*write_perms(int perm)
 	return (str);
 }
 
-char	*ft_title(char *title)
+char	*ft_title(char *title, int t)
 {
 	int		i;
 
+	if (t)
+		return (title);
 	while (ft_strchr(title, '/'))
 		title = ft_strchr(title, '/') + 1;
 	i = ft_strlen(title);

@@ -6,7 +6,7 @@
 /*   By: agissing <agissing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:57:16 by agissing          #+#    #+#             */
-/*   Updated: 2019/01/25 14:16:45 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/25 16:28:19 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_g(t_lst *lst, t_buf *i)
 		ft_addstr(i, "\033[43m\033[34m");
 	else if (S_ISBLK(lst->stat.st_mode))
 		ft_addstr(i, "\033[46m\033[34m");
-	ft_addstr(i, ft_title(lst->name));
+	ft_addstr(i, ft_title(lst->name, lst->t));
 	ft_addstr(i, "\033[0m");
 }
 
@@ -35,7 +35,10 @@ void	simple_print(t_lst *lst, t_buf *i, char opt)
 		reverse_lst(&lst);
 	while (lst)
 	{
-		opt & OPT_G ? print_g(lst, i) : ft_addstr(i, ft_title(lst->name));
+		if (opt & OPT_G)
+			print_g(lst, i);
+		else
+			ft_addstr(i, ft_title(lst->name, lst->t));
 		if (lst->next)
 			ft_addstr(i, "  ");
 		else
@@ -44,10 +47,10 @@ void	simple_print(t_lst *lst, t_buf *i, char opt)
 	}
 }
 
-void	list_print(t_lst *lst, char opt, t_buf *i)
+void	list_print(t_lst *lst, char op, t_buf *i)
 {
-	ft_sort(&lst, opt);
-	if (opt & OPT_LR)
+	ft_sort(&lst, op);
+	if (op & OPT_LR)
 		reverse_lst(&lst);
 	total(i, lst);
 	while (lst)
@@ -58,7 +61,8 @@ void	list_print(t_lst *lst, char opt, t_buf *i)
 		leading(12, lst->grp->gr_name, i);
 		leading_nbr(5, lst->stat.st_size, i);
 		leading(13, cut_time_opt(ctime(&lst->stat.st_ctime)), i);
-		opt & OPT_G ? print_g(lst, i) : ft_addstr(i, ft_title(lst->name));
+		op & OPT_G ? print_g(lst, i)
+			: ft_addstr(i, ft_title(lst->name, lst->t));
 		ft_addchar(i, '\n');
 		lst = lst->next;
 	}

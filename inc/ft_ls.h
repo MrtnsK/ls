@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/25 14:17:51 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/25 16:25:21 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@
 # define OPT_UA 64
 # define OPT_F 128
 
-#define BUFSIZE_LS 1024
+# define BUFSIZE_LS 1024
 
 typedef struct stat		t_stat;
 typedef struct dir		t_dir;
-typedef struct passwd 	t_pswd;
+typedef struct passwd	t_pswd;
 typedef struct group	t_grp;
 
 typedef struct			s_buf
@@ -51,6 +51,7 @@ typedef struct			s_lst
 	t_pswd			*pswd;
 	t_grp			*grp;
 	t_dir			*dir;
+	char			t;
 	struct s_lst	*next;
 }						t_lst;
 
@@ -85,7 +86,6 @@ void					leading_nbr(int size, int nbr, t_buf *i);
 void					ls_rec(t_struct *tab);
 void					ls(t_struct *tab);
 
-t_lst					*ft_create_lst(char *name);
 void					ft_lst_push_back(t_lst **lst, char *name, char *source);
 
 char					*join_path(char *path1, char *path2);
@@ -101,7 +101,7 @@ void					options(char *str, t_struct *tab);
 void					ft_sort(t_lst **lst, char opt);
 char					*cut_time_opt(char *str);
 char					*write_perms(int perm);
-char					*ft_title(char *title);
+char					*ft_title(char *title, int t);
 
 void					reverse_lst(t_lst **lst);
 void					reverse_param(t_param **lst);

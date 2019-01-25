@@ -6,7 +6,7 @@
 /*   By: agissing <agissing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:03:48 by agissing          #+#    #+#             */
-/*   Updated: 2019/01/25 13:15:34 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/25 16:06:23 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,8 @@ void	ls_rec(t_struct *tab)
 	{
 		if (!(new.names = (t_param **)malloc(sizeof(t_param *))))
 			return ;
-		*new.names = NULL;
 		ft_sort((*tab->names)->child, tab->opt);
-		if (tab->opt & OPT_LR)
+		if (!(*new.names = NULL) && tab->opt & OPT_LR)
 			reverse_lst((*tab->names)->child);
 		while (*(*tab->names)->child)
 		{
