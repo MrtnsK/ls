@@ -6,7 +6,7 @@
 /*   By: agissing <agissing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:03:48 by agissing          #+#    #+#             */
-/*   Updated: 2019/01/25 16:06:23 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/07 11:36:27 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,15 @@ void	ls_rec(t_struct *tab)
 		free(new.names);
 		*tab->names = (*tab->names)->next;
 	}
+}
+
+int		link_pointer(t_buf *i, char *name)
+{
+	char	*buf;
+
+	buf = ft_strnew(500);
+	ft_addstr(i, " -> ");
+	readlink(name, buf, 500);
+	ft_addstr(i, buf);
+	return (1);
 }
