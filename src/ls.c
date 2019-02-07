@@ -6,7 +6,7 @@
 /*   By: agissing <agissing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:03:48 by agissing          #+#    #+#             */
-/*   Updated: 2019/02/07 18:44:48 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/07 19:43:33 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	ls_rec(t_struct *tab)
 			}
 			*(*tab->names)->child = (*(*tab->names)->child)->next;
 		}
+		ft_free(new.names);
 		free(new.names);
 		*tab->names = (*tab->names)->next;
 	}
