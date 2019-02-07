@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:57:47 by kemartin          #+#    #+#             */
-/*   Updated: 2019/02/07 22:03:16 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/07 22:09:55 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,7 @@ int		main(int ac, char **av)
 		ft_param_push_back(tab.names, ".");
 	tab.nb = 0;
 	tmp = *tab.names;
-	if (tab.opt & OPT_UR)
-		ls_rec(&tab);
-	else
-		ls(&tab);
+	(tab.opt & OPT_UR) ? ls_rec(&tab) : ls(&tab);
 	ft_free(tab.names);
 	free(tab.names);
 	return (0);
