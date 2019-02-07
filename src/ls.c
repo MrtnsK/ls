@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ls.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agissing <agissing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:03:48 by agissing          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/02/07 11:36:27 by agissing         ###   ########.fr       */
-=======
-/*   Updated: 2019/01/25 19:24:13 by kemartin         ###   ########.fr       */
->>>>>>> e9d4ac9fa6d1640ca3cfd38183e2b91194b0c850
+/*   Updated: 2019/02/07 17:16:40 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-int		is_point(char *name)
-{
-	name = ft_title(name, 0);
-	return (name[0] == '.' && (!name[1] || (name[1] && name[1] == '.' && !name[2])));
-}
 
 void	ls(t_struct *tab)
 {
@@ -68,10 +58,9 @@ void	ls_rec(t_struct *tab)
 			reverse_lst((*tab->names)->child);
 		while (*(*tab->names)->child)
 		{
-			if (S_ISDIR((*(*tab->names)->child)->stat.st_mode)
-				&& !is_point((*(*tab->names)->child)->name))
+			if (S_ISDIR((*(*tab->names)->child)->stat.st_mode))
 			{
-		 		ft_param_push_back(new.names, (*(*tab->names)->child)->name);
+				ft_param_push_back(new.names, (*(*tab->names)->child)->name);
 				ls_rec(&new);
 			}
 			*(*tab->names)->child = (*(*tab->names)->child)->next;

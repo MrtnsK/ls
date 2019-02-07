@@ -6,11 +6,7 @@
 #    By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 15:54:25 by kemartin          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2019/02/07 13:50:24 by agissing         ###   ########.fr        #
-=======
-#    Updated: 2019/01/25 19:13:12 by kemartin         ###   ########.fr        #
->>>>>>> e9d4ac9fa6d1640ca3cfd38183e2b91194b0c850
+#    Updated: 2019/01/25 14:17:27 by agissing         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +55,7 @@ $(FT_LIB) :
 	@echo "Libft ok."
 
 $(NAME) : $(OBJ)
-	@$(CC) $(OBJ) $(FT_LNK) -o $(NAME)
+	@$(CC) $(OBJ) $(FT_LNK) -o $(NAME) -fsanitize=address
 	@echo "Everything done."
 
 clean :
