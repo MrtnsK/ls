@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:49:26 by kemartin          #+#    #+#             */
-/*   Updated: 2019/01/25 16:36:49 by agissing         ###   ########.fr       */
+/*   Updated: 2019/01/25 19:11:45 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_sort(t_lst **lst, char opt)
 	t_lst	*trie;
 
 	tmp1 = (*lst);
-	if (!(trie = malloc(sizeof(t_lst))))
+	if (opt & OPT_F || !(trie = malloc(sizeof(t_lst))))
 		return ;
 	while (tmp1 && (tmp3 = tmp1))
 	{
