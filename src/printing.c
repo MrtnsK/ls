@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:57:16 by agissing          #+#    #+#             */
-/*   Updated: 2019/02/08 16:46:37 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:59:51 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,8 @@ void	list_print(t_lst *lst, char op, t_buf *i)
 void	write_perms(int perm, char acl, t_buf *i)
 {
 	char	*str;
-	int		j;
 
-	if (!(str = ft_strnew(12)))
+	if (!(str = ft_strnew(11)))
 		return ;
 	str[0] = '-';
 	S_ISCHR(perm) ? str[0] = 'c' : 0;
@@ -95,9 +94,8 @@ void	write_perms(int perm, char acl, t_buf *i)
 	str[7] = ((perm & S_IROTH) ? 'r' : '-');
 	str[8] = ((perm & S_IWOTH) ? 'w' : '-');
 	str[9] = ((perm & S_IXOTH) ? 'x' : '-');
-	str[10] = ((perm & S_ISVTX) ? 't' : ' ');
-	j = perm & S_ISVTX ? 11 : 10;
-	acl ? str[j] = acl : 0;
-	leading(12, str, i);
+	(perm & S_ISVTX) ? str[9] = 't' : 0;
+	str[10] = acl ? acl : ' ';
+	leading(11, str, i);
 	free(str);
 }
