@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/02/07 20:47:11 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/02/08 14:27:28 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,14 @@ char					*join_path(char *path1, char *path2);
 void					ft_param_push_back(t_param **lst, char *name);
 void					ft_param_push_after(t_param *lst, char *name);
 
-void					get_childs(t_param *params, char opt);
+void					get_childs(t_param *p, char opt);
 void					simple_print(t_lst *lst, t_buf *i, char opt);
 void					list_print(t_lst *lst, char opt, t_buf *i);
 
 void					options(char *str, t_struct *tab);
 void					ft_sort(t_lst **lst, char opt);
 void					cut_time_opt(char *str, t_buf *i);
+void					cut_time_year(char *str, t_buf *i);
 void					write_perms(int perm, t_buf *i);
 char					*ft_title(char *title, int t);
 
