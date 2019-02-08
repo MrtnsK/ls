@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 19:47:31 by kemartin          #+#    #+#             */
-/*   Updated: 2019/02/08 17:41:22 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/08 18:59:39 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,10 @@ void	reverse_param(t_param **lst)
 	previous = NULL;
 	while (current)
 	{
-		paramcpy(next, current->next);
 		next = current->next;
-		paramcpy(current->next, previous);
 		current->next = previous;
-		paramcpy(previous, current);
 		previous = current;
-		paramcpy(current, next);
 		current = next;
-		printf("%d\n", current->name != next->name);
 	}
 	*lst = previous;
 }

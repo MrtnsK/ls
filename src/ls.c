@@ -6,7 +6,7 @@
 /*   By: agissing <agissing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:03:48 by agissing          #+#    #+#             */
-/*   Updated: 2019/02/08 18:05:15 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/08 19:43:27 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ls(t_struct *tab)
 	t_param		*tmp;
 
 	get_childs(*tab->names, tab->opt);
+	if (tab->opt & OPT_LR)
+		reverse_param(tab->names);
 	tmp = *tab->names;
-/*	if (((tmp = *tab->names) || 1) && tab->opt & OPT_LR)
-	reverse_param(tab->names);*/
 	while (tmp)
 	{
 		if ((*tab->names)->next && !tab->nb)
@@ -56,9 +56,8 @@ void	do_ls_rec(t_struct *new, t_struct *tab)
 		if (!(new->names = (t_param **)malloc(sizeof(t_param *))))
 			return ;
 		ft_sort((*tab->names)->child, tab->opt);
-		*new->names = NULL;
-/*		if (!(*new->names = NULL) && tab->opt & OPT_LR)
-		reverse_lst((*tab->names)->child);*/
+		if (!(*new->names = NULL) && tab->opt & OPT_LR)
+			reverse_lst((*tab->names)->child);
 		while (*(*tab->names)->child)
 		{
 			if (S_ISDIR((*(*tab->names)->child)->stat.st_mode)
@@ -67,12 +66,12 @@ void	do_ls_rec(t_struct *new, t_struct *tab)
 				ft_param_push_back(new->names, (*(*tab->names)->child)->name);
 				ls_rec(new);
 			}
-			tmp1 = *((*tab->names))->child;
-			*((*tab->names))->child = (*(*tab->names)->child)->next;
+			tmp1 = *(*tab->names)->child;
+			*(*tab->names)->child = (*(*tab->names)->child)->next;
 			free(tmp1->name);
 			free(tmp1);
 		}
-		(*tab->names) = ((*tab->names))->next;
+		*tab->names = (*tab->names)->next;
 	}
 }
 
@@ -80,37 +79,13 @@ void	ls_rec(t_struct *tab)
 {
 	t_struct	new;
 	t_param		*tmp;
-	t_lst		*tmp1;
 
-	tmp = *tab->names;
 	ls(tab);
+	tmp = *tab->names;
 	new.opt = tab->opt;
 	new.nb = tab->nb;
 	new.bf = tab->bf;
-	while (*tab->names)
-	{
-		if (!(new.names = (t_param **)malloc(sizeof(t_param *))))
-			return ;
-		ft_sort((*tab->names)->child, tab->opt);
-		*new.names = NULL;
-/*		if (!(*new.names = NULL) && tab->opt & OPT_LR)
-		reverse_lst((*tab->names)->child);*/
-		while (*(*tab->names)->child)
-		{
-			if (S_ISDIR((*(*tab->names)->child)->stat.st_mode)
-				&& !is_point(ft_title((*(*tab->names)->child)->name, 0)))
-			{
-				ft_param_push_back(new.names, (*(*tab->names)->child)->name);
-				ls_rec(&new);
-			}
-			tmp1 = *((*tab->names))->child;
-			*(*tab->names)->child = (*(*tab->names)->child)->next;
-			free(tmp1->name);
-			free(tmp1);
-		}
-		*tab->names = (*tab->names)->next;
-	}
-//	do_ls_rec(&new, tab);
+	do_ls_rec(&new, tab);
 	free(new.names);
 	ft_free(tab->names);
 	ft_free(&tmp);
