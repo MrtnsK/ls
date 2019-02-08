@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:57:16 by agissing          #+#    #+#             */
-/*   Updated: 2019/02/08 14:27:03 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/08 15:12:21 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	print_g(t_lst *lst, t_buf *i)
 {
-	if (S_ISDIR(lst->stat.st_mode))
+	if (lst->stat.st_mode & S_ISVTX)
+		ft_addstr(i, "\033[42m\033[30m");
+	else if (S_ISDIR(lst->stat.st_mode))
 		ft_addstr(i, "\033[1;36m");
 	else if (S_ISLNK(lst->stat.st_mode))
 		ft_addstr(i, "\033[0;35m");
@@ -76,7 +78,7 @@ void	write_perms(int perm, t_buf *i)
 {
 	char	*str;
 
-	if (!(str = ft_strnew(10)))
+	if (!(str = ft_strnew(11)))
 		return ;
 	str[0] = '-';
 	S_ISCHR(perm) ? str[0] = 'c' : 0;
@@ -92,6 +94,7 @@ void	write_perms(int perm, t_buf *i)
 	str[7] = ((perm & S_IROTH) ? 'r' : '-');
 	str[8] = ((perm & S_IWOTH) ? 'w' : '-');
 	str[9] = ((perm & S_IXOTH) ? 'x' : '-');
+	str[10] = ((perm & S_ISVTX) ? 't': ' ');
 	leading(11, str, i);
 	free(str);
 }
