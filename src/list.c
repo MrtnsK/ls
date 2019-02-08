@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:49:26 by kemartin          #+#    #+#             */
-/*   Updated: 2019/02/08 16:27:19 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:47:02 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ft_sort(t_lst **lst, char opt)
 		tmp2 = tmp1->next;
 		while (tmp2)
 		{
-			if (opt & OPT_T ? trie->stat.st_ctime < tmp2->stat.st_ctime
+			if (opt & OPT_T ? trie->stat.st_mtime < tmp2->stat.st_mtime
 				: ft_strcmp(trie->name, tmp2->name) > 0)
 				lstcpy(trie, (tmp3 = tmp2));
 			tmp2 = tmp2->next;

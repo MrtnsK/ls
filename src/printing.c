@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:57:16 by agissing          #+#    #+#             */
-/*   Updated: 2019/02/08 16:27:43 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:46:37 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ void	list_print(t_lst *lst, char op, t_buf *i)
 		: leading_nbr2(8, lst->stat.st_uid, i);
 		leading(12, lst->grp->gr_name, i);
 		leading_nbr(5, lst->stat.st_size, i);
-		if (lst->stat.st_ctime + 15778800 > time(0))
-			cut_time_opt(ctime(&lst->stat.st_ctime), i);
+		if (lst->stat.st_mtime + 15778800 > time(0))
+			cut_time_opt(ctime(&lst->stat.st_mtime), i);
 		else
-			cut_time_year(ctime(&lst->stat.st_ctime), i);
+			cut_time_year(ctime(&lst->stat.st_mtime), i);
 		op & OPT_G ? print_g(lst, i)
 			: ft_addstr(i, ft_title(lst->name, lst->t));
 		S_ISLNK(lst->stat.st_mode) ? link_pointer(i, lst->name) : 0;
