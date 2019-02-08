@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:57:16 by agissing          #+#    #+#             */
-/*   Updated: 2019/02/08 15:12:21 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:27:43 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_g(t_lst *lst, t_buf *i)
 {
-	if (lst->stat.st_mode & S_ISVTX)
+	if (lst->stat.st_mode & S_ISVTX && !lst->acl)
 		ft_addstr(i, "\033[42m\033[30m");
 	else if (S_ISDIR(lst->stat.st_mode))
 		ft_addstr(i, "\033[1;36m");
@@ -56,7 +56,7 @@ void	list_print(t_lst *lst, char op, t_buf *i)
 		reverse_lst(&lst);
 	while (lst)
 	{
-		write_perms(lst->stat.st_mode, i);
+		write_perms(lst->stat.st_mode, lst->acl, i);
 		leading_nbr(2, lst->stat.st_nlink, i);
 		lst->pswd ? leading(10, lst->pswd->pw_name, i)
 		: leading_nbr2(8, lst->stat.st_uid, i);
@@ -74,11 +74,12 @@ void	list_print(t_lst *lst, char op, t_buf *i)
 	}
 }
 
-void	write_perms(int perm, t_buf *i)
+void	write_perms(int perm, char acl, t_buf *i)
 {
 	char	*str;
+	int		j;
 
-	if (!(str = ft_strnew(11)))
+	if (!(str = ft_strnew(12)))
 		return ;
 	str[0] = '-';
 	S_ISCHR(perm) ? str[0] = 'c' : 0;
@@ -94,7 +95,9 @@ void	write_perms(int perm, t_buf *i)
 	str[7] = ((perm & S_IROTH) ? 'r' : '-');
 	str[8] = ((perm & S_IWOTH) ? 'w' : '-');
 	str[9] = ((perm & S_IXOTH) ? 'x' : '-');
-	str[10] = ((perm & S_ISVTX) ? 't': ' ');
-	leading(11, str, i);
+	str[10] = ((perm & S_ISVTX) ? 't' : ' ');
+	j = perm & S_ISVTX ? 11 : 10;
+	acl ? str[j] = acl : 0;
+	leading(12, str, i);
 	free(str);
 }

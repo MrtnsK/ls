@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/02/08 14:27:28 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/08 15:45:18 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <dirent.h>
 # include <pwd.h>
 # include <grp.h>
+# include <sys/xattr.h>
+# include <sys/acl.h>
 
 # define OPT_L 1
 # define OPT_UR 2
@@ -51,6 +53,7 @@ typedef struct			s_lst
 	t_pswd			*pswd;
 	t_grp			*grp;
 	t_dir			*dir;
+	char			acl;
 	char			t;
 	struct s_lst	*next;
 }						t_lst;
@@ -104,7 +107,7 @@ void					options(char *str, t_struct *tab);
 void					ft_sort(t_lst **lst, char opt);
 void					cut_time_opt(char *str, t_buf *i);
 void					cut_time_year(char *str, t_buf *i);
-void					write_perms(int perm, t_buf *i);
+void					write_perms(int perm, char acl, t_buf *i);
 char					*ft_title(char *title, int t);
 
 void					ft_free(t_param **tab);
