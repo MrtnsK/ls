@@ -3,53 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agissing <agissing@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 12:31:30 by agissing          #+#    #+#             */
-/*   Updated: 2019/02/13 13:50:57 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/13 18:21:32 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_free_lst(t_param *tab)
-{
-	t_param	*tmp;
-	t_lst	*tmp1;
-
-	tmp = tab;
-	while (tmp)
-	{
-		while (*tmp->child)
-		{
-			tmp1 = *tmp->child;
-			free((*tmp->child)->name);
-			*tmp->child = (*tmp->child)->next;
-			free(tmp1);
-		}
-		tmp = tmp->next;
-	}
-	*tab->child = NULL;
-}
-
 void	ft_free(t_param **tab)
 {
 	t_param	*tmp;
 	t_lst	*tmp1;
+	t_param	*tmp2;
 
-	while (*tab)
+	tmp = *tab;
+	while (tmp)
 	{
-		tmp = *tab;
 		while (*tmp->child)
 		{
-			tmp1 = *tmp->child;
+			tmp1 = (*tmp->child)->next;
 			free((*tmp->child)->name);
-			*tmp->child = (*tmp->child)->next;
-			free(tmp1);
+			free(*tmp->child);
+			*tmp->child = tmp1;
 		}
 		free(tmp->child);
-		*tab = (*tab)->next;
-		free(tmp);
+		tmp2 = tmp;
+		tmp = tmp->next;
+		free(tmp2);
 	}
-	free(*tab);
 }
