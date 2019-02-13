@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/02/13 19:22:08 by kemartin         ###   ########.fr       */
+/*   Updated: 2019/02/13 19:35:03 by kemartin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void					ft_lst_push_back(t_lst **lst, char *name, char *src);
 
 char					*join_path(char *path1, char *path2);
 
+t_param					*ft_create_param(char *name);
 void					ft_param_push_back(t_param **lst, char *name);
 void					ft_param_push_after(t_param *lst, char *name);
 void					paramcpy(t_param *new, t_param *old);
