@@ -6,7 +6,7 @@
 #    By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/07 15:54:25 by kemartin          #+#    #+#              #
-#    Updated: 2019/02/07 21:22:13 by agissing         ###   ########.fr        #
+#    Updated: 2019/02/13 12:32:08 by agissing         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC		=	main.c \
 			leading.c \
 			get_childs.c \
 			printing.c \
+			free.c \
 			total.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
@@ -55,7 +56,7 @@ $(FT_LIB) :
 	@echo "Libft ok."
 
 $(NAME) : $(OBJ)
-	@$(CC) $(OBJ) $(FT_LNK) -o $(NAME)
+	@$(CC) $(OBJ) $(FT_LNK) -o $(NAME) -g3
 	@echo "Everything done."
 
 clean :

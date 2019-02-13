@@ -6,7 +6,7 @@
 /*   By: kemartin <kemartin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 15:56:16 by kemartin          #+#    #+#             */
-/*   Updated: 2019/02/08 17:33:01 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/13 12:39:29 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void					leading(int size, char *str, t_buf *i);
 void					leading_nbr(int size, int nbr, t_buf *i);
 void					leading_nbr2(int size, int nbr, t_buf *i);
 
-void					ls_rec(t_struct *tab);
-void					ls(t_struct *tab);
+void					ls_rec(t_struct *tab, int rec);
+void					ls(t_struct *tab, int rec);
 int						link_pointer(t_buf *i, char *name);
 
 void					ft_lst_push_back(t_lst **lst, char *name, char *source);
@@ -100,7 +100,7 @@ void					ft_param_push_back(t_param **lst, char *name);
 void					ft_param_push_after(t_param *lst, char *name);
 void					paramcpy(t_param *new, t_param *old);
 
-void					get_childs(t_param *p, char opt);
+void					get_childs(t_param *p, char opt, int rec);
 void					simple_print(t_lst *lst, t_buf *i, char opt);
 void					list_print(t_lst *lst, char opt, t_buf *i);
 
@@ -112,6 +112,7 @@ void					write_perms(int perm, char acl, t_buf *i);
 char					*ft_title(char *title, int t);
 
 void					ft_free(t_param **tab);
+void					ft_free_lst(t_param *tab);
 
 void					reverse_lst(t_lst **lst);
 void					reverse_param(t_param **lst);

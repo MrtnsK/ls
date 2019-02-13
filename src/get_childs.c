@@ -6,7 +6,7 @@
 /*   By: agissing <agissing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 12:56:16 by agissing          #+#    #+#             */
-/*   Updated: 2019/02/08 17:15:19 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/13 13:46:53 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ int		is_ok(char opt, char *name)
 		|| (name[1] && (name[1] != '.' || name[2])))) || name[0] != '.');
 }
 
-void	get_childs(t_param *p, char opt)
+void	get_childs(t_param *p, char opt, int rec)
 {
 	DIR				*d;
 	struct dirent	*dir;
 	struct stat		buf;
 
+	if (rec && opt & OPT_LR)
+		ft_free_lst(p);
 	while (p)
 	{
 		lstat(p->name, &buf);
@@ -36,12 +38,10 @@ void	get_childs(t_param *p, char opt)
 			p->ok = 2;
 		}
 		else
-		{
-			if ((lstat(p->name, &buf) < 0 || errno == EACCES) && !(p->ok = 0))
+			if ((lstat(p->name, &buf) < 0 || errno == EACCES) && !(p->ok = 0) && (rec || (opt & OPT_LR) == 0))
 				errno == EACCES ? acces_error(p->name) : files_err(p->name);
 			else
 				ft_lst_push_back(p->child, p->name, "");
-		}
 		p = p->next;
 	}
 }

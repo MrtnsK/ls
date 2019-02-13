@@ -6,25 +6,25 @@
 /*   By: agissing <agissing@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 13:03:48 by agissing          #+#    #+#             */
-/*   Updated: 2019/02/08 19:43:27 by agissing         ###   ########.fr       */
+/*   Updated: 2019/02/13 14:09:41 by agissing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ls(t_struct *tab)
+void	ls(t_struct *tab, int rec)
 {
 	t_param		*tmp;
 
-	get_childs(*tab->names, tab->opt);
+	get_childs(*tab->names, tab->opt, 0);
 	if (tab->opt & OPT_LR)
 		reverse_param(tab->names);
 	tmp = *tab->names;
 	while (tmp)
 	{
-		if ((*tab->names)->next && !tab->nb)
+		if ((*tab->names)->next && !tab->nb && (tmp->ok || rec))
 			ft_addtwostr(&tab->bf, (tmp)->name, ":\n");
-		else if (tab->nb)
+		else if (tab->nb && (tmp->ok || rec))
 		{
 			ft_addchar(&tab->bf, '\n');
 			ft_addtwostr(&tab->bf, (tmp)->name, ":\n");
@@ -53,7 +53,7 @@ void	do_ls_rec(t_struct *new, t_struct *tab)
 
 	while (*tab->names)
 	{
-		if (!(new->names = (t_param **)malloc(sizeof(t_param *))))
+		if (!(new->names = (t_param **)ft_memalloc(sizeof(t_param *))))
 			return ;
 		ft_sort((*tab->names)->child, tab->opt);
 		if (!(*new->names = NULL) && tab->opt & OPT_LR)
@@ -64,29 +64,33 @@ void	do_ls_rec(t_struct *new, t_struct *tab)
 				&& !is_point(ft_title((*(*tab->names)->child)->name, 0)))
 			{
 				ft_param_push_back(new->names, (*(*tab->names)->child)->name);
-				ls_rec(new);
+				ls_rec(new, 1);
 			}
 			tmp1 = *(*tab->names)->child;
 			*(*tab->names)->child = (*(*tab->names)->child)->next;
 			free(tmp1->name);
 			free(tmp1);
 		}
+		ft_free(new->names);
+		free(new->names);
 		*tab->names = (*tab->names)->next;
 	}
 }
 
-void	ls_rec(t_struct *tab)
+void	ls_rec(t_struct *tab, int rec)
 {
 	t_struct	new;
 	t_param		*tmp;
 
-	ls(tab);
 	tmp = *tab->names;
+	ft_free_lst(*tab->names);
+	ls(tab, rec);
+	if (tab->opt & OPT_LR)
+		get_childs(tmp, tab->opt, 1);
 	new.opt = tab->opt;
 	new.nb = tab->nb;
 	new.bf = tab->bf;
 	do_ls_rec(&new, tab);
-	free(new.names);
 	ft_free(tab->names);
 	ft_free(&tmp);
 }
